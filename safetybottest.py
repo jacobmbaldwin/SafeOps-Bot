@@ -4,12 +4,8 @@ import os
 
 url = "https://api.groupme.com/v3/groups?token=4RBEXfcfeke2TByTMwviZJQDo7ebLuwTr2puwiLe"
 response = requests.get(url)
+data = response.json()
 print(response.status_code)
-
-
-def jprint(obj):
-    text = json.dumps(obj, sort_keys=True, indent=4)
-    print(text)
 
 
 def send_message(msg):
@@ -23,5 +19,5 @@ def send_message(msg):
 
 
 if response['name'] != 'Safety Bot Test':
-    msg = '{}, you sent "{}".'.format(response['name'], response['text'])
+    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
     send_message(msg)
