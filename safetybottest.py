@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 url = "https://api.groupme.com/v3/groups?token=4RBEXfcfeke2TByTMwviZJQDo7ebLuwTr2puwiLe"
 response = requests.get(url)
@@ -11,19 +12,16 @@ def jprint(obj):
     print(text)
 
 
-# jprint(response.json())
+def send_message(msg):
+    bot_url = 'https://api.groupme.com/v3/bots/post'
 
-botURL = "https://api.groupme.com/v3/bots/post"
-botTestMessage = {
-    "bot_id": "ddc1285520851d732617ead80d",
-    "text": "This message is to test attachments.",
-    "attachments":
-        [{
-            "type": "image",
-            "url": "https://i.groupme.com/somethingsomething.large"
-        }]
-}
+    data = {
+        'bot_id': os.getenv('GROUPME_BOT_ID'),
+        'text': msg,
+    }
+    message = requests.post(url, json=data)
 
-x = requests.post(botURL, json=botTestMessage)
 
-print(x.text)
+if response['name'] != 'Safety Bot Test':
+    msg = '{}, you sent "{}".'.format(response['name'], response['text'])
+    send_message(msg)
