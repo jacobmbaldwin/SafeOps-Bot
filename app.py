@@ -6,7 +6,13 @@ url = f"https://api.groupme.com/v3/groups?token={API_KEY}"
 response = requests.get(url)
 data = response.json()
 print(response.status_code)
+# print(data)
 
+response_list = data['response']
+first_item = response_list[0]
+print('First Item: ', first_item)
+botTestGroup = first_item['group_id']
+print(botTestGroup)
 
 def send_message(msg):
     bot_url = 'https://api.groupme.com/v3/bots/post'
@@ -15,9 +21,9 @@ def send_message(msg):
         'bot_id': os.getenv('GROUPME_BOT_ID'),
         'text': msg,
     }
-    message = requests.post(url, json=data)
+    return requests.post(bot_url, json=data)
 
 
-if data['name'] != 'Safety Bot Test':
-    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+if first_item['messages']['preview']['nickname'] != 'Safety Bot Test':
+    msg = '{}, you sent "{}".'.format(first_item['messages']['preview']['nickname'], first_item['messages']['preview']['text'])
     send_message(msg)
