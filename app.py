@@ -36,5 +36,9 @@ def main():
         msg = 'Only God can help the likes of you, son.'
         return send_message(msg)
 
+    if first_item['messages']['preview']['text'] == '!jake':
+        msg = 'Jake is a great guy. Should probably stay off that ankle, tho...'
+        return send_message(msg)
+    
 
 main()
