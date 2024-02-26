@@ -1,8 +1,8 @@
 import requests
 import json
 import os
-
-url = "https://api.groupme.com/v3/groups?token=4RBEXfcfeke2TByTMwviZJQDo7ebLuwTr2puwiLe"
+API_KEY = os.getenv('API_KEY')
+url = f"https://api.groupme.com/v3/groups?token={API_KEY}"
 response = requests.get(url)
 data = response.json()
 print(response.status_code)
@@ -18,6 +18,6 @@ def send_message(msg):
     message = requests.post(url, json=data)
 
 
-if response['name'] != 'Safety Bot Test':
+if data['name'] != 'Safety Bot Test':
     msg = '{}, you sent "{}".'.format(data['name'], data['text'])
     send_message(msg)
