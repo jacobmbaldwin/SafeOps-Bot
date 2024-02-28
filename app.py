@@ -33,12 +33,17 @@ def main():
     #     send_message(msg)
 
     if first_item['messages']['preview']['text'] == '!help':
-        msg = 'Only God can help the likes of you, son.'
+        msg = '''
+            You can use the following commands to trigger Safety Bot Responses:
+            !events - Learn about what events are upcoming (You do not want to miss Safety Saturday!)
+            !cover - Let me know when you are covering a shift! Type "!cover <your name> <their name>" 
+                     Note: Be sure to use the name that displays in GroupMe.        
+        '''
         return send_message(msg)
 
     if first_item['messages']['preview']['text'] == '!jake':
         msg = 'Jake is a great guy. Should probably stay off that ankle, tho...'
         return send_message(msg)
-    
+
 
 main()
