@@ -24,8 +24,6 @@ def main():
     response_list = data['response']
     first_item = response_list[0]
     print('First Item: ', first_item)
-    botTestGroup = first_item['group_id']
-    print(botTestGroup)
 
     # if first_item['messages']['preview']['nickname'] != 'Safety Bot Test':
     #     msg = '{}, you sent "{}".'.format(first_item['messages']['preview']['nickname'],
@@ -34,17 +32,17 @@ def main():
 
     if first_item['messages']['preview']['text'] == '!help':
         msg = '''
-        You can use the following commands to trigger Safety Bot Responses:
-        
-        !events - Learn about what events are upcoming (You do not want to miss Safety Saturday!)
-        
-        !cover - Let me know when you are covering a shift! Type "!cover <your name> <their name>" 
-        Note: Be sure to use the name that displays in GroupMe.        
-        '''
+    You can use the following commands to trigger Safety Bot Responses:
+    
+    !events - Learn about what events are upcoming (You do not want to miss Safety Saturday!)
+    
+    !cover - Let me know when you are covering a shift! Type "!cover <your name> <their name>" 
+    Note: Be sure to use the name that displays in GroupMe.        
+    '''
         return send_message(msg)
 
     if first_item['messages']['preview']['text'] == '!jake':
-        msg = 'Jake is a great guy. Should probably stay off that ankle, tho...'
+        msg = 'Jake is a great guy. Should probably stay off that norovirus tho...'
         return send_message(msg)
 
 
